@@ -10,22 +10,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.12"
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-    - name: Install Dependencies
-      run: |
-        pip install pandas
-        pip install numpy
-        pip install scikit-learn
-        pip install mlflow
+      - name: Check Environment
+        run: |
+          python --version
+          pip --version
 
-    - name: Run Model Training
-      run: |
-        cd MLProject
-        python modelling.py
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mlflow pandas numpy scikit-learn
+
+      - name: Run MLflow Project
+        run: |
+          cd MLProject
+          mlflow run . --env-manager local
+
+      - name: Get latest MLflow run_id
+        run: |
+          cd MLProject
+          ls mlruns
+          ls mlruns/0

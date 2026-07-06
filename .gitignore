@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+venv/
+.venv/
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# MLflow
+MLProject/mlruns/
+MLProject/mlflow.db
+
+# Environment
+.env
+
+# Logs
+*.log
